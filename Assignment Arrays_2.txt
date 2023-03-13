@@ -1,0 +1,180 @@
+Q1 - Given an unsorted array arr[] of size N having both negative and positive integers, place all negative elements at the end of array without changing the order of positive elements and negative elements.
+
+sol - import java.util.*;
+public class Array2_Assignment {
+    public static int[] order(int[] arr){
+        int size = arr.length;
+        int[] ans = new int[size];
+        int idx = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] >= 0){
+                ans[idx] = arr[i];
+                idx++;
+            }
+        }
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] < 0){
+                ans[idx] = arr[i];
+                idx++;
+            }
+        }
+        return ans;
+    }
+
+public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter array size : ");
+    int size = sc.nextInt();
+    int[] arr = new int[size];
+
+    for (int i = 0; i < arr.length; i++) {
+        arr[i] = sc.nextInt();
+    }
+
+    int[] anss = order(arr);
+    for (int i = 0; i < anss.length; i++) {
+        System.out.print(anss[i]+" ");
+    }
+}
+
+}
+
+
+
+Q2 - Given two arrays a[] and b[] of size n and m respectively where m >= n. The task is to find union between these two arrays and print the number of elements of the union set.Union of the two arrays can be defined as the set containing distinct elements from both the arrays. If there are repetitions, then only one occurrence of element should be printed in the union.
+
+sol - import java.util.*;
+public class Array2_Assignment {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int[] a = new int[n];
+        int[] b = new int[m];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.nextInt();
+        }
+        for (int j = 0; j < m; j++) {
+            b[j] = sc.nextInt();
+        }
+        int[] c = new int[m+n];
+        int k = 0;
+        for (int i = 0; i < n; i++) {
+            boolean flag = false;
+            for (int j = 0; j < m; j++) {
+                if (a[i] == b[j]) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                c[k++] = a[i];
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            c[k++] = b[i];
+        }
+        System.out.println("Union of two arrays:");
+        for (int i = 0; i < k; i++) {
+            System.out.print(c[i] + " ");
+        }
+        System.out.println("\nNumber of elements in the union set: " + k);
+    }
+}
+
+
+Q3 - Given an array arr[] and an integer K where K is smaller than size of array, the task is to find the Kth smallest element in the given array. It is given that all array elements are distinct.
+
+sol - import java.util.*;
+public class Array2_Assignment {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        int[] arr = new int[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int K = sc.nextInt();
+
+        Arrays.sort(arr);
+
+        int result = arr[K-1];
+        System.out.println(result);
+    }
+}
+
+
+Q4 - Given an unsorted array A of size N that contains only non-negative integers, find a continuous sub-array which adds to a given number S.
+In case of multiple subarrays, return the subarray which comes first on moving from left to right.You need to print the start and end index of answer subarray
+
+sol - import java.util.*;
+public class Array2_Assignment {
+    public static void Subarray(int size, int[] arr, int sum){
+        for (int i = 0; i < size; i++) {
+            int currentsum = arr[i];
+            if(currentsum == sum){
+                System.out.println("Sum found at "+i);
+                return;
+            }
+            else{
+                for (int j = i+1; j < size ; j++) {
+                    currentsum += arr[j];
+                    if(currentsum == sum){
+                        System.out.println("Sum found between indexes "+i+" and "+j);
+                        return;
+                    }
+                }
+            }
+        }
+        System.out.println("Sum not found");
+        return;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = sc.nextInt();
+        int[] arr = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int sum = sc.nextInt();
+
+        Subarray(size,arr,sum);
+
+    }
+}
+
+
+Q5 - Write a Java program to test the equality of two arrays.
+
+sol - import java.util.*;
+public class Array2_Assignment {
+    public static void Eqality(int[] arr1, int arr2[]){
+        boolean result = Arrays.equals(arr1, arr2);
+        if(result == true){
+            System.out.println("Arrays are equal");
+        }
+        else{
+            System.out.println("Arrays are not equal");
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size1 = sc.nextInt();
+        int[] arr1 = new int[size1];
+
+        for (int i = 0; i < size1; i++) {
+            arr1[i] = sc.nextInt();
+        }
+
+        int size2 = sc.nextInt();
+        int[] arr2 = new int[size2];
+        for (int j = 0; j < size2; j++) {
+            arr2[j] = sc.nextInt();
+        }
+
+        Eqality(arr1, arr2);
+    }
+}
+
